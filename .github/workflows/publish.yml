@@ -1,0 +1,22 @@
+env:
+  GOVER: 1.17.0
+  CGO_ENABLED: 0
+  MKDOCS_MATERIAL_VER: 7.2.2
+
+name: publish
+on:
+  push:
+    branches:
+      - "docs-*"
+    tags:
+      - "v*"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - run: docker run -v $(pwd):/docs --entrypoint mkdocs squidfunk/mkdocs-material:$MKDOCS_MATERIAL_VER gh-deploy --force --strict

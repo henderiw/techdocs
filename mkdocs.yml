@@ -1,0 +1,130 @@
+site_name: tech docs
+nav:
+  - Home: index.md
+  - Consul:
+    - getting started with consul on k8s: consul/gettingstartedk8s.md
+    - consul api: consul/api.md
+  - Mkdocs:
+    - getting started: mkdocs/gettingstarted.md
+site_author: Wim Henderickx
+site_description: >-
+  various technical notes
+# repository
+repo_name: henderiw/techdocs
+repo_url: https://github.com/henderiw/techdocs
+site_url: "https://techdocs.henderiw.be"
+edit_uri: ""
+theme:
+  name: material
+  custom_dir: docs/overrides
+
+  # 404 page
+  static_templates:
+    - 404.html
+
+  # Don't include MkDocs' JavaScript
+  include_search_page: false
+  search_index_only: true
+
+  language: en
+  features:
+    - navigation.top
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - search.suggest
+    - content.code.annotate
+    - content.tabs.link
+    - header.autohide
+    - navigation.expand
+    - navigation.indexes
+    - navigation.sections
+    - navigation.tabs.sticky
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.integrate
+    
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: cyan
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: cyan
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+  font:
+    text: Manrope
+    code: Fira Mono
+  icon:
+    logo: fontawesome/solid/flask   
+  #favicon: images/srl.png
+
+# Plugins
+plugins:
+  - search
+  - minify:
+      minify_html: true
+  
+# Customization
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/henderiw
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/whenderickx
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/prHcBMSq
+  analytics:
+    provider: google
+    property: G-368XR9X5MG
+    
+extra_css:
+  - stylesheets/extra.css
+
+# Extensions
+markdown_extensions:
+  - markdown.extensions.admonition
+  - markdown.extensions.attr_list
+  - markdown.extensions.codehilite:
+      guess_lang: false
+  - markdown.extensions.def_list
+  - markdown.extensions.footnotes
+  - markdown.extensions.meta
+  - markdown.extensions.toc:
+      permalink: "#"
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight:
+      linenums_style: pymdownx-inline
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
