@@ -1,6 +1,8 @@
 site_name: tech docs
 nav:
   - Home: index.md
+  - Buf:
+    - getting started: buf/gettingstarted.md
   - Consul:
     - getting started with consul on k8s: consul/gettingstartedk8s.md
     - consul api: consul/api.md
