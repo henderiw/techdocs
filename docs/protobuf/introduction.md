@@ -1,5 +1,7 @@
 # protobuf
 
+chann
+
 ## protobuf with go modules
 
 [protobuf with go modules](https://stepan.wtf/importing-protobuf-with-go-modules/)
@@ -28,3 +30,9 @@ message Condition {
     string message = 5;
 }
 '''
+
+## protobuf makefile
+
+Experiment with cue-gen
+
+[buf, cue-gen, target](https://github.com/henderiw/cue-gen-target-with-buf)
