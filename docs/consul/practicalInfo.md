@@ -1,6 +1,8 @@
-Health services:
+# consul practical info
 
-we use grpc and ttl e.g.
+## Health services:
+
+we use grpc and ttl e.g. in k8s deployment
 
 - if there are more than 1: 
   - service:$ID:$INDEX
