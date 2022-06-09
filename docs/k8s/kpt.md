@@ -32,7 +32,6 @@ Config as Data
 - seperate code that acts on config -> functions
 - abstract storage
 
-
 ## components
 
 - kpt cli:
