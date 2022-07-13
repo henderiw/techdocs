@@ -44,8 +44,9 @@ git clone https://github.com/GoogleContainerTools/kpt-backstage-plugins.git
 cd kpt-backstage-plugins
 docker build --target backstage-app-local --tag kpt-backstage-plugins .
 
+```
 docker run -v ~/.kube/config:/root/.kube/config -v ~/.config/gcloud:/root/.config/gcloud -p 7007:7007 kpt-backstage-plugins
-
+```
 ## example nginx
 
 in tmp directory
