@@ -496,6 +496,73 @@ fn main() {
 }
 ```
 
+[error articale anyhow](https://nick.groenen.me/posts/rust-error-handling/)
+
+
+### this error
+
+```
+use thiserror:Error;
+
+#[Derive(Debug, Error)]
+#[error("Error A occured")]
+struct ErrorA {
+    #[from]
+        source: ErrorB
+};
+
+#[Derive(Debug, Error)]
+#[error("Error B occured")]
+struct ErrorB;
+
+fn return_error_a() -> Result<bool, ErrorA> {
+    Err(ErrorA {Source: ErrorB})
+}
+
+fn return_error_b() -> Result<bool, ErrorB> {
+    Err(ErrorB)
+}
+
+fn main() -> Result<(), ErrorA> {
+    return_error_a();
+    return_error_b();
+    Ok(())
+}
+```
+
+### anyhow
+
+deals with dynamic error types
+
+```
+use thiserror:Error;
+use anyhow::Result;
+
+#[Derive(Debug, Error)]
+#[error("Error A occured")]
+struct ErrorA {
+    #[from]
+        source: ErrorB
+};
+
+#[Derive(Debug, Error)]
+#[error("Error B occured")]
+struct ErrorB;
+
+fn return_error_a() -> Result<bool, ErrorA> {
+    Err(ErrorA {Source: ErrorB})
+}
+
+fn return_error_b() -> Result<bool, ErrorB> {
+    Err(ErrorB)
+}
+
+fn main() -> Result<()> {
+    return_error_a();
+    return_error_b();
+    Ok(())
+}
+
 ## HashMaps
 
 - collection that stores data as key-value pair

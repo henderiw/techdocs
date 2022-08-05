@@ -1,0 +1,234 @@
+# install UI
+
+```
+kubectl create namespace backstage
+
+CLIENT_ID=
+CLIENT_SECRET=
+
+kubectl create secret generic -n backstage cad-google-oauth-client --from-literal=client-id=$CLIENT_ID --from-literal=client-secret=$CLIENT_SECRET
+```
+
+```
+echo "
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backstage
+  namespace: backstage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backstage
+  template:
+    metadata:
+      labels:
+        app: backstage
+    spec:
+      containers:
+        - name: backstage
+          image: backstage
+          ports:
+            - name: http
+              containerPort: 7007
+          env:
+            - name: AUTH_GOOGLE_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: cad-google-oauth-client
+                  key: client-id
+                  optional: false
+            - name: AUTH_GOOGLE_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: cad-google-oauth-client
+                  key: client-secret
+                  optional: false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backstage
+  namespace: backstage
+spec:
+  selector:
+    app: backstage
+  ports:
+    - name: http
+      port: 7007
+      targetPort: http
+" | kpt fn eval "" -o unwrap --image set-image:v0.1.0 -- \
+name=backstage newName=gcr.io/kpt-dev/kpt-backstage-plugins/backstage-plugin-cad newTag=v0.2.0 | \
+kubectl apply -f -
+```
+
+```
+echo "
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backstage
+  namespace: backstage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backstage
+  template:
+    metadata:
+      labels:
+        app: backstage
+    spec:
+      containers:
+        - name: backstage
+          image: backstage
+          ports:
+            - name: http
+              containerPort: 7007
+          env:
+            - name: AUTH_GOOGLE_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: cad-google-oauth-client
+                  key: client-id
+                  optional: false
+            - name: AUTH_GOOGLE_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: cad-google-oauth-client
+                  key: client-secret
+                  optional: false
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: backstage
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: backstage
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backstage
+  namespace: backstage
+spec:
+  selector:
+    app: backstage
+  ports:
+    - name: http
+      port: 7007
+      targetPort: http
+" | kpt fn eval "" -o unwrap --image set-image:v0.1.0 -- \
+name=backstage newName=yndd/kpt-backstage-plugins newTag=v0.0.1 | \
+kubectl apply -f -
+```
+
+```
+cat <<EOF | kubectl apply -f -
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: backstage
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: backstage
+EOF
+```
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: backstage:auth-delegator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:auth-delegator
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: backstage
+
+## SSH tunneling
+
+ssh -i ~/.ssh/id_rsa henderiw@35.233.4.91 -L 7007:localhost:7007
+
+kubectl port-forward --namespace=backstage svc/backstage 7007 --address="0.0.0.0"
+
+
+
+## install metallb
+
+```
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.12.1/manifests/namespace.yaml
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.12.1/manifests/metallb.yaml
+```
+
+```
+kubectl get pods -n metallb-system --watch
+```
+
+```
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: metallb-system
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: default
+      protocol: layer2
+      addresses:
+      - 172.18.0.200-172.18.0.220
+EOF
+```
+
+### patch svc to loadbalancer
+
+```
+kubectl patch svc backstage -n backstage -p '{"spec": {"type": "Loadbalancer"}}'
+```
+
+### Add iptables to connect the cluster
+
+The first rule provide a dnat from any traffic that enters on port 9443 to the loadbalancer. The second rule ensures the traffic is forwarded
+
+```
+sudo iptables -t nat -A DOCKER ! -i lo -p tcp -m tcp --dport 32007 -j DNAT --to-destination 10.132.0.38:32007
+
+sudo iptables -t filter -A DOCKER -d 127.0.0.0/24 ! -i br-8a8b1b423d82 -o br-8a8b1b423d82 -p tcp -m tcp --dport 7007 -j ACCEPT
+```
+
+```
+sudo iptables -t nat -D DOCKER ! -i br-8a8b1b423d82 -p tcp -m tcp --dport 7007 -j DNAT --to-destination 172.18.0.200:7007
+
+sudo iptables -t filter -D DOCKER -d 172.18.0.0/24 ! -i br-8a8b1b423d82 -o br-8a8b1b423d82 -p tcp -m tcp --dport 7007 -j ACCEPT
+
+
+## nginx
+
+henderiw@kind-mgmt:~$ cat helm-nginx
+  helm install ingress-nginx-1 ingress-nginx/ingress-nginx \
+  --namespace ingress-nginx \
+  --set controller.ingressClassResource.name=nginx \
+  --set controller.ingressClassResource.controllerValue="henderiw.be/ingress-nginx" \
+  --set controller.ingressClassResource.enabled=true \
+  --set controller.ingressClassByName=true \
+  --set controller.hostNetwork=true \
+  --set rbac.create=true \
+  --set controller.kind=Deployment \
+  --set controller.metrics.enabled=true
