@@ -12,7 +12,19 @@ console.log()
 - Null: null -> absence of a value
 - Undefined: undefined -> a given value does not exist
 - symbol
-- objet: colletion of related data
+- objet: collection of related data
+
+boolean, number, string -> primitive types (copy)
+array, object -> reference type (pointer) 
+
+const person = {
+  name: 'Max'
+}
+
+// copy the object iso referecning them
+const secondPerson = {
+  ...person
+}
 
 ## methods
 

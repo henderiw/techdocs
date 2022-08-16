@@ -20,6 +20,16 @@ How big is this market based on the above?
 - Verizon is pushing to go to cloud RAN, Ericsson is also dragging their feet
 - Samsung is full cloud RAN in Verizon
 
+## environment
+
+- cpri radios -> how real are they?
+- how real is cloud ran
+
+3 options:
+- tps + IXR -> no 50G, 2 box solution
+- 2RU airsacle + FHGW -> 
+- New box
+
 ## cell site GW
 
 ### distributed cloud ran
