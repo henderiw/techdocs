@@ -74,6 +74,11 @@ components are build using
   - when to use props and when to use context
     - props: use state
     - context: app or component wide state
+- redux: (redux-toolkit)
+  - context disadvantages:
+    - can become complex -> depends on app we are building
+      - deeply nested context provider
+  - performance
 - custom hooks:
   - used for reusable code e.g.
 - Performance optimization for react
@@ -128,3 +133,5 @@ const sortedList = usememo(() => {
   return items.sort((a, b) => a-b)
 }, [items])
 ```
+
+[example code](https://github.com/academind/react-complete-guide-code/tree/18-diving-into-redux)
