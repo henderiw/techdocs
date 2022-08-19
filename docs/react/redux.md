@@ -197,3 +197,14 @@ const mapDispathToProps = (dispatch) => {
 export default connect(mapStateToProps, mapDispathToProps)(Counter);
 ```
 
+## alternative using hooks
+
+section 25
+
+[react hook ](https://github.com/academind/react-complete-guide-code/tree/25-replacing-redux)
+
+- shared variables global for the app
+  - manages global state, listeners and actions
+- useState: every component will rerender
+- listeners get register/deregistered when component is loaded/unloaded
+- 
