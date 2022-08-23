@@ -135,3 +135,10 @@ const sortedList = usememo(() => {
 ```
 
 [example code](https://github.com/academind/react-complete-guide-code/tree/18-diving-into-redux)
+
+## eco-system
+
+- gatsby.js
+- preact: smaller footprint
+- [react native: Android/IOS](https://acad.link/react-native)
+- [mern](https://acad.link/mern)

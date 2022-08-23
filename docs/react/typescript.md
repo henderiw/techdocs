@@ -35,3 +35,11 @@ npx create-react-app <my-app>  --template typescript
 
 ## tsconfig.json
 
+- compiler configuration: see the official docuementation
+  - target: the target js code -> es5 (broad browser support
+    - there could be another step like using babel
+  - libraries that are used
+    - default dom types like HTMLInputElement
+  - allowJs: allow plain js file for mixed project
+  - strict: true -> sticted possible settings
+  - jsx is supported
