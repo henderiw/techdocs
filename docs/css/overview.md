@@ -42,9 +42,11 @@ chrome: developper tools
   - padding, border, margin
     - [box model](https://developer.mozilla.org/en-US/docs/Learn/CSS/Introduction_to_CSS/Box_model)
     - [box-sizing](https://developer.mozilla.org/en-US/docs/Web/CSS/box-sizing)
-  - witdth/height
+  - width/height
     - [width/height](https://www.w3schools.com/css/css_dimension.asp)
-    - 
+  - html block/in-line element
+    - block eleemnt: sectio, div, h1
+    - inline element: a
 - shorthand properties
 - display poperty -> inline-block
   - none, hidden
@@ -71,3 +73,163 @@ chrome: developper tools
   - margin
   - width
   - height
+- selector addition
+  - multiple classes: order does not matter
+  - a.active or a#some-id
+- selector: classes or id(s)
+  - classes:
+    - re-usable
+  - id(s):
+    - only used once per page
+    - they also get a non css meaning e.g. on-page link
+      - they are used in html to link within a page
+  - [classes vs ids](https://stackoverflow.com/questions/12889362/difference-between-id-and-class-in-css-and-when-to-use-it)
+- [!important](https://css-tricks.com/when-using-important-is-the-right-choice/)
+  - overrides specifity 
+  - dont use it
+- pseudo class: [:not](https://developer.mozilla.org/en-US/docs/Web/CSS/:not)
+  - allows to reverse or exclude a selector
+  - a:not(.active)
+  - Not that usefull -> use a positive way
+- css browser support
+  - [can i use](https://caniuse.com)
+- outline: lighter version of the border
+- float: 
+  - Not t obe used for positioning
+  - overrides default positioning -> ty
+  - needs clearfix
+- Positioning
+  - [positioning](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning)
+  - [position property](https://developer.mozilla.org/en-US/docs/Web/CSS/position)
+    - static: default
+    - fixed: 
+    - absolute
+    - relative
+    - [sticky](https://caniuse.com/#search=sticky)
+  - Document flow
+    - the default positioning behavior of html elements
+    - can be changed with position
+    - elements can remain in the documeent flow or excluded
+      - remain within document flow: relative
+      - removed from document flow: fixed
+    - Moving elements
+      - top/bottom, left/right
+    - Posiitoning Context
+      - anchor point for positioning
+      - fixed: viewport
+      - absolute: another element: html or ancestor element with position property defined
+      - relative: element
+      - sticky: viewport and another element
+    - [Z-index](https://developer.mozilla.org/en-US/docs/Web/CSS/z-index):
+      - changes the default positioning along the z-axis
+      - auto (0) is default
+      - chnages only when position is applied
+      - larger value = element is positioned on top of other elements
+    - [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context)
+      - created when applying fixed/sticky or absolute/relative in combination with z-index
+      - defines stacking behavior of child elements
+- background
+  - [background-property](https://developer.mozilla.org/en-US/docs/Web/CSS/background)
+    - background-image
+    - background-size:
+      - cover -> 
+      - contain -> keeps the aspect-ratio of the image
+      - 100%
+    - background-position: (x-axis, y-axis)
+      - 0% 100%
+      - center -> like 50% 50%
+      - left top
+    - background-origin: border-box
+    - background-clip: border-box
+    - background-attachement: scroll, fixed
+  - gradients:
+    - linear/radial
+  - multiple backgrounds
+  - filter
+  - img vs background-image which is more flexible but harder to maintain
+    - use css only for background images
+- dimensioning/sizing:
+  - units: px, %, rem/em, viewport, auto
+  - containing block when % are used -> based on position property
+  - 100% height issue -> position: static/relative
+  - min/max-width or min/max-height -> to keep images within a limit
+  - em/rem depend on font-size of the root element (rem)
+    - can be used also for other properties
+- Javascript:
+  - accesssing style properties
+  - add & remove CSS classes
+- making website responsive (mobile)
+  - viewport
+  - media queries
+- styling forms
+  - input tend to have many browser defaults
+  - use pseduo selectors :focus
+  - outline vs border
+  - validation:
+    - valid or invalid speduo selctors
+- text-fonts
+  - generic and font families
+  - importing font families: local or web based
+  - font properties
+    - font-size
+    - font-style
+    - font-weight
+    - font-stretch
+    - font-variant
+    - letter-spacing
+    - white-space
+    - line-height
+    - text-decoration
+    - text-shadow
+  - font shorthand
+    - /*font-style font-variant font-weight font-size/line-height 
+  - font-display
+    - impact loading behavior
+- flexbox
+  - easily chnage how element are displayed on a website
+  - display: flex
+    - flex-container
+  - flex-container
+    - flex-direction
+    - flex-wrap
+    - flex-flow (shorthand)
+    - align-items
+    - justify-content
+    - align-content
+  - main-axis/cross-axis
+  - flex items:
+    - order
+    - align-self
+- css grid
+  - create a grid: display: grid
+    - direct child element are automaticaly placed in rows
+    - grid-auto-flow
+    - grid-auto-rows
+    - grid-auto-columns
+  - define grid structure
+    - grid-template-columns/grid-template-rows
+    - explicit or implicit
+    - auto-fill/auto-fir
+    - minmax
+  - placing elements
+    - grid-row/grid-column
+  - align element in the grid
+    - justify-items (x-axis)
+    - align-content (y-axis)
+- comparing grid vs flexbox
+  - css grid:
+    - 2 dimensional positioning: row and columns
+    - e.g. form, main page
+  - flexbox
+    - one-dimensional positioning: rows or columns
+    - e.g. packages, key-features
+- transform
+  - 2d: rotate, 
+  - 3d
+- futures:
+  - variables
+  - autoprefixer
+  - support queries
+  - css variables
+  - naming classes: BEM
+  - plan css vs frameworks

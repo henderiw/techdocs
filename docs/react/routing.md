@@ -33,7 +33,7 @@ npm install react-router-dom@5
 
 in index.js:
 - import BrowserRouter
-- render the App withing BroweserRouter
+- render the App within BroweserRouter
 
 ```
 import { BrowserRouter } from 'react-router-dom';

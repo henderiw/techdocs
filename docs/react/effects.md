@@ -27,7 +27,7 @@ the are done outside -> should not go into the component functions
 ## how
 
 useEffect hook
-- 1st argument: function taht should be executed AFTER every component evaluation IF the specified dependencies changed 
+- 1st argument: function that should be executed AFTER every component evaluation IF the specified dependencies changed 
   - at startup this fn will run
   - after they run when dependencie change
 - 2nd argument: dependencies as an array
