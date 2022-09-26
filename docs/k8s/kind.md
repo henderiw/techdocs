@@ -43,7 +43,7 @@ apiServer:
   - 35.233.4.91
 ```
 
-copt the modified kubeadm.yaml file in the docker image
+copy the modified kubeadm.yaml file in the docker image
 
 ```
 docker cp kubeadm.yaml mgmt-control-plane:/root/kubeadm.yaml

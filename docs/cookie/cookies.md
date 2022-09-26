@@ -1,0 +1,1 @@
+[cookiesp](https://www.freecodecamp.org/news/everything-you-need-to-know-about-cookies-for-web-development/)

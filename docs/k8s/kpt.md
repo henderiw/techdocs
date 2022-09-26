@@ -14,7 +14,7 @@ WYSIWYG => what you see is what you get
 ## why
 
 impertative:
-- easier to use an dadopt
+- easier to use and adopt
 - difficult to use and scale -> lack of reusibility & automation
 
 IaaC: (terraform/helm)
@@ -27,7 +27,7 @@ Code like presentation:
 UI: new approach needed
 
 Config as Data
-- KRM daya model
+- KRM data model
 - package: config data -> source of truth
 - seperate code that acts on config -> functions
 - abstract storage
