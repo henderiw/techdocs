@@ -54,3 +54,18 @@ verifier:
 
 XRP:
 - offload an eBPF in the kernel to offload kernel overhead in storage
+
+## overview
+
+BPF programs -> restricted set of C
+eBPF helper functions -> help with contextual information
+BPF maps -> sharing info between kernel space and user space
+
+BPF triggered by events:
+- in response to system calls -> e.g. hook on syscall, fn entry/exit, kernel tracepoint, network event
+- kprobe entry on kernel function
+
+
+libbpfgo -> go wrapper around libbpf
+
+ELF object file 
