@@ -50,6 +50,8 @@ chmod hello.txt
 
 sudo bpftool map dump name ctf_flag
 
+[writeup](https://hemslo.io/ebpf-summit-2022-ctf-challenge-2-writeup/)
+
 ## ctf challenge 3
 
 crictl ps
@@ -98,3 +100,5 @@ spec:
         - ports:
             - port: "80"
 ```
+
+[writeup](https://hemslo.io/ebpf-summit-2022-ctf-challenge-3-writeup/)
