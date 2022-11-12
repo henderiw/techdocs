@@ -32,14 +32,17 @@ kpt live apply nephio-system --reconcile-timeout=15m --output=table
 
 ### config sync
 
-fetch the package
+kubectl create secret generic git-creds \
+  --namespace="config-management-system" \
+  --from-literal=username=${GITHUB_USERNAME} \
+  --from-literal=token=${GITHUB_TOKEN}
 
 ```
 cat <<EOF | kubectl apply -f -
   apiVersion: configsync.gke.io/v1beta1
   kind: RootSync
   metadata: # kpt-merge: config-management-system/nephio-mgmt-cluster-sync
-    name: nephio-mgmt-cluster-sync
+    name: mgmt-admin-sync
     namespace: config-management-system
     annotations:
       config.kubernetes.io/depends-on: apiextensions.k8s.io/CustomResourceDefinition/rootsyncs.configsync.gke.io
@@ -47,7 +50,7 @@ cat <<EOF | kubectl apply -f -
   spec:
     sourceFormat: unstructured
     git:
-      repo: https://github.com/henderiw-nephio/nephio-mgmt-sync
+      repo: https://github.com/henderiw-nephio/mgmt-admin.git
       branch: main
       auth: token
       secretRef:
@@ -107,9 +110,48 @@ tenant1 config packages
 - fabric1 topology
 
 ```
-kpt alpha rpkg clone yndd-packages-eab26028b156b5aa2419e71bcebbac06d469825a yndd-packages/target --repository nephio-mgmt-sync -revision v1 -n default
+kpt alpha rpkg clone yndd-packages-eab26028b156b5aa2419e71bcebbac06d469825a yndd-packages/target --repository nephio-mgmt-sync --revision v1 -n default
 
 kpt alpha rpkg propose nephio-mgmt-sync-806bfb766002c079922b5cc5b2bf9bb46f9754be -n default
 
 kpt alpha rpkg approve nephio-mgmt-sync-806bfb766002c079922b5cc5b2bf9bb46f9754be -n default
 ```
+
+
+
+## new attempt
+
+### register repository
+
+kpt alpha repo register \
+  --namespace default \
+  --repo-basic-username=${GITHUB_USERNAME} \
+  --repo-basic-password=${GITHUB_TOKEN} \
+  https://github.com/yndd/yndd-mgmt-core-packages.git
+
+kpt alpha repo register \
+  --namespace default \
+  --repo-basic-username=${GITHUB_USERNAME} \
+  --repo-basic-password=${GITHUB_TOKEN} \
+  https://github.com/yndd/yndd-mgmt-app-packages.git
+
+kpt alpha repo register \
+  --deployment \
+  --namespace default \
+  --repo-basic-username=${GITHUB_USERNAME} \
+  --repo-basic-password=${GITHUB_TOKEN} \
+  https://github.com/${GITHUB_ORGANIZATION}/mgmt-admin.git
+
+
+  kpt alpha repo register \
+  --namespace default \
+  --repo-basic-username=${GITHUB_USERNAME} \
+  --repo-basic-password=${GITHUB_TOKEN} \
+  https://github.com/henderiw-kpt/test-package.git
+
+
+  kpt alpha repo register \
+  --namespace default \
+  --repo-basic-username=${GITHUB_USERNAME} \
+  --repo-basic-password=${GITHUB_TOKEN} \
+  https://github.com/henderiw-kpt/test-package-ok.git
