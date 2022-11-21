@@ -4,7 +4,7 @@
 
 fedora
 
-sudo dnf instakk clang go make libbpf-devel bpftool
+sudo dnf install clang go make libbpf-devel bpftool
 sudo dnf install clang make libbpf-devel
 
 ubuntu
@@ -20,9 +20,11 @@ go get github.com/cilium/ebpf/internal/unix
 
 ## sample
 
-masmulim2000
+[]masmulin2000](https://github.com/masmullin2000/bpf_with_go/tree/main/app/src)
 
-docuemntation
+[masmulim2000](https://blog.devgenius.io/how-to-write-ebpf-programs-with-golang-933d58fc5dba)
+
+documentation
 
 [cilium ebpf](https/github.com/cilium/ebpf)
 
