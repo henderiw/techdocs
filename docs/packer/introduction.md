@@ -8,7 +8,7 @@ builds machine images cross platform
 - machine image
 
 platform: aws, gcp, etc
-confgiration mgmt: ansible
+configuration mgmt: ansible
 os/distribution: linux
 
 by providing templates
