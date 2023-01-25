@@ -1,0 +1,45 @@
+# xml
+
+- xml doc are formed element trees
+  - prolog (<?xml version="1.0" encoding="UTF-8"?>) -> optional, no closing tag
+  - relationship
+- xml syntax
+  - root element -> 1 root element is required
+  - xml elements must have a closing tag
+  - tags are case sensitive
+  - xml elements must be properly nested
+  - xml attributes values must always be quoted
+  - entity references: &lt, &gt, &amp, &apos, &quot
+  - whitespaces are preserved
+  - 
+- xml elements
+  - can contain:
+    - text -> data within an element
+    - attributes
+    - other elements
+  - element names 
+    - case sensitive
+    - must start with letter or underscore
+    - cannot start with XML, Xml
+    - can contain letters, digits, hyphens, underscores, and periods
+    - no space allowed
+  - attributes:
+    - <person gender="female">
+    - attributes must be quoted
+  - elements versus attributes
+    - attributes cannot contain multiple values (elements can)
+    - attributes cannot contain tree structures (elements can)
+    - attributes are not easily expandable (for future changes)
+- namespace:
+  - avaoids naming conflicts
+  - syntax: xmlns:prefix="URI"
+  - example: 
+    - <root xmlns:h="http://www.w3.org/TR/html4/" xmlns:f="https://www.w3schools.com/furniture">
+- xpath:
+  - node selection
+  - compound expression
+  - predicates: 
+    - /protocols/ospf/area[1]
+  - operarator
+
+
