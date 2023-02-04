@@ -7,7 +7,9 @@
 - Create
 - Reload
 - Upload: stream -> Create + Upload hash per file + hash
-- ToPath
+- ToPath: read the data tree and get the actual path
+
+single RLock -> no write possible, read many which is ok
 
 ## data server
 
@@ -22,12 +24,14 @@
 - Get datastore
 - Create Datastore (main, candidate)
 - Get Data -> gnmi get
-- Set Data -> gnmi set
+- Set Data -> gnmi set (does only syntax validation, no true validation)
 - Diff
 - Subscribe
 - Commit
   - we have the baseline + prepared candidate -> used to do the diff
   - when going to the device we will execute a diff
+
+we store interface/ethernet-1.1/sub-interface/1/...
 
 
 target differences
@@ -42,3 +46,10 @@ target differences
 - set (candidate)
 - commit (candidate)
   - cache does a diff
+
+
+## todo
+- validation (leafref)
+- xml
+- json ietf
+- 
