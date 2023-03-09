@@ -5,8 +5,6 @@
 - inflexible wrt the resource constructs
 - resources and compositions are cluster scoped -> not a good security model
 - very opinionated way to do things
-- 
-
 
 ## positive:
 
