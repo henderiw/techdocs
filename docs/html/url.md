@@ -29,6 +29,8 @@ components:
     - host (mandatory): e.g. google.com
     - port (optional)
 - path (mandatory):
+    - path Sections: how many "/ are in a path -> /a/b/c -> 3
+    - path Segments: a,b,c /a/b/c
     - sequence of path segments separated by a slash (/)
     - path segment can have only 1 : or * -> wildcard
     - in http/https:

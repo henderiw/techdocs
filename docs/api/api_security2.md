@@ -83,7 +83,6 @@ audit log
         - password verification is expensive
         - user experience with default login is not great
         - browsers rememeber the passwords
-
 - Token based authentication:
     - UI:
         - json request can only be made using javascript
