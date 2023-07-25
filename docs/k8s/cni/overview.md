@@ -13,6 +13,17 @@
 
 
 
++----------+        +-------------------+                         +------------+
+| runtime  |        | env vars:         |                         | exit code  |
+| kubelet  +--------+ - CNI_COMMAND     |      +----------+       |            |
+|          |        | - CNI_CONTAINERID |      | cni      |       |            |
++----------+        | - CNI_IFNAME      +------+ binary   +-------+------------+
+                    | - CNI_NETNS       |      |          |       | stdout:    |
+                    +-------------------+      |          |       | json       |
+                    | stdin:            |      +----------+       |            |
+                    | - json conf       |                         +------------+
+                    +-------------------+
+
 ## overview cni project
 
 - specification

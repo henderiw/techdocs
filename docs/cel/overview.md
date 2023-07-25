@@ -2,6 +2,25 @@
 
 [cel github](https://github.com/google/cel-go)
 [cel codelabs](https://codelabs.developers.google.com/codelabs/cel-go/index.html#0)
+[kubcon eu 2023](https://www.youtube.com/watch?v=KIL1BAq3J2g)
+-> min 07:00
+
+-> example: /Users/henderiw/code/tmp/cel-go/codelab
+
+## highlevel
+
+- create an env: defines the environment (defines variables and functions + other options)
+- parse and check the expression
+- evaluate the expression
+
+## limitations
+
+- no for/while/...
+    - use comprehension "macros"
+    -> all(), exists(), exists_one(), map(), filter()
+- no if/else/...
+    - use the ternary operator:
+    -> <condition> ? <ifTrue> : <ifFalse>
 
 ## steps
 
