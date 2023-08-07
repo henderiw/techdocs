@@ -1,0 +1,52 @@
+cdk -> typescript; golang is not
+
+schema:
+- helm: nok
+- kustomize: nok
+- cdk: ok
+- carvel ytt: ok
+
+overlay:
+- helm: nok
+- kustomize: ok
+- cdk: ok
+- carvel ytt: ok
+
+policy, constraints and validations:
+- helm: nok
+- kustomize: nok
+- cdk: nok
+- carvel ytt: ok
+
+learning curve:
+- helm: ok
+- kustomize: ok
+- cdk: nok -> golang implementation is bad
+- carvel ytt: nok
+
+simple -> kustomize
+complex -> CRD/controllers
+
+large yaml: CUE, CUElang
+
+what is CUE: configure unify and execute
+-> configure
+-> unify
+-> execute
+
+superset of json expired by go
+
+
+cure result on the critectue
+data: ok -> cue export cue/templates/video.cue --out yaml
+schemas/struct: ok
+schemas/struct import: cue get go
+  - point cue to git ot k8s schema
+  - cue get go kubernetes repo
+type checking: ok
+overlays: ok -> cue export cue/templates/video.cue
+policy/constraints and validations: ok -> cue vet cue/templates/video.cue; 
+  cue export cue/templates/video.cue -> validation happen automatically for experts
+learning curve: higher than helm and kustomize (#, %, &) -> immutability
+
+competitor to cue is ytt or jsonnet

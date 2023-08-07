@@ -58,3 +58,14 @@ docker exec mgmt-control-plane kubeadm init phase certs apiserver --config /root
 details:
 
 [adding san to cert](https://blog.scottlowe.org/2019/07/30/adding-a-name-to-kubernetes-api-server-certificate/)
+
+## load images locally
+
+kind load docker-image europe-docker.pkg.dev/srlinux/eu.gcr.io/resource-backend-controller:latest --name topo
+
+- local image: europe-docker.pkg.dev/srlinux/eu.gcr.io/resource-backend-controller:latest
+- topo: name of the cluster
+
+imagePullPolicy: IfNotPresent
+
+-> avoids pull the image from the internet

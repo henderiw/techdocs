@@ -35,3 +35,4 @@ questions:
 - redundant nic? no too expensive
 
 
+[cuda spec](https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#)
