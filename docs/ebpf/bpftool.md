@@ -50,6 +50,9 @@ chmod hello.txt
 
 sudo bpftool map dump name ctf_flag
 
+bpftool map lookup id 50 key 26 0 0 0 => the lookup key is decimal
+-> key: 1a 00 00 00  value: 1c 00 00 00
+
 [writeup](https://hemslo.io/ebpf-summit-2022-ctf-challenge-2-writeup/)
 
 ## ctf challenge 3

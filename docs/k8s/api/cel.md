@@ -22,6 +22,8 @@ rules
 // +kubebuilder:validation:XValidation:rule="!has(self.interfaceName || self == oldSelf",message="Value is immutable"
 
 future:
+- validation rules
+- mutating rules also called transition rules (self/oldSelf)
 - version conversion
 - policy agent (kuberbetes/cel-admission-webhook)
     - policy author (care about correctness and extensibility)

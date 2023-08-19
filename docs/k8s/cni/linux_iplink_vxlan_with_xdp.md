@@ -53,3 +53,6 @@ sudo ip netns exec clab-alpine01-linux ip link set veth11 up
 sudo ip netns exec clab-alpine01-linux ip link set veth21 up
 sudo ip netns exec clab-alpine01-linux ip link set bond0 up
 sudo ip netns exec clab-alpine01-linux ip addr add 192.168.0.21/24 dev bond0
+
+ 
+[ensure vxlan](https://github.com/alibaba/hybridnet/blob/1fa3e616d3368aef4ad04595f02b285cc8cafc4e/pkg/daemon/vxlan/vxlan.go#L184)
