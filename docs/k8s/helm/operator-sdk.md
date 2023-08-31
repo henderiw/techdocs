@@ -9,3 +9,9 @@ operator-sdk init \
       --kind=Nginx
 ```
 
+```bash
+operator-sdk init \
+      --plugins=helm.sdk.operatorframework.io/v1 \
+      --domain=example.com \
+      --helm-chart=helm-charts
+```

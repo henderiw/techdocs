@@ -24,11 +24,16 @@ bpftool prog dump jited pinned /sys/fs/bpf/counter_nobtf
 bpftool map show
 bpftool map dump name counter_map
 
+bpftool map dump id 7 | grep -v \<no
+
 -> attach program
 
 bpftool net attach xdp pinned /sys/fs/bpf/counter_nobtf dev enp3s0
+bpftool net detach xdpgeneric dev wire-8fcd4089
 
 bpftool net show
+
+
 
 ## btf 
 

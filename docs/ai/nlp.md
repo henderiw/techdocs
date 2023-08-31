@@ -83,6 +83,66 @@ traditional approach: (harder to maintain, easier to understand)
 deeplearning approach: (simpler to maintain, but how is the result achieved)
 - 
 
+representation:
+- image: pixels + intensity
+- video: frames of images
+- sound: amplitude at a given time
+- text: see next chapter
+
+#### text representation
+
+e.g. sentiment analysis
+- break the sentence into lexical units such as lexemes, words and phrases
+- derive the meaning of each of the lexical units
+- understand the syntactic (grammatical) structure of the sentense
+- understand the context in which the sentence appears
+
+appraches
+- vectorization (VSM: vector space model)
+    - [vector space](https://en.wikipedia.org/wiki/Vector_space)
+    - [vector decomposition](https://en.wikipedia.org/wiki/Euclidean_vector#Decomposition)
+    - cosime similarity
+    - implementations:
+        - one-hot encoding: (issues: size is variable, vocabulary is large, no notion of similarities, OOV (out of vocabulary))
+        - bag of words (BoW): uses words to classify a sentense in a class (bag) (issues: vocabulary is large -> we could limit it, no notation of similarities, word order is lost)
+        - bag of N-grams (tokens) chunk = n-gram (n contiguous words) -> provides context, but: still OOV and n > complexity grows
+            BOW: 1-gram, bigram model (2), trigram model (3)
+        - TF-IDF: so far no notion of importance of words
+            TF: Term frequency -> how often a term/word occurs in a doc relative to its length
+            IDF: Inverse Document Frequency -> measures the importance of the term accross the corpus/documents
+    - summary:
+        - discrete implementation: hampers the ability to capture relationships between words
+        - sparse and high-dimensional represntation: hampers learning, computational inefficient
+        - OOV is not handled
+- distributed representation:
+    - use neural networks to create dense, low-dimensional representation of words
+    - terms:
+        - distributional similarity: meaning of the word can be understood from the context
+            - commotation: meaning is defined by context
+            - denotation: literal meaning of a word
+            - NLP rocks -> literal meaning is stones, but here it means good
+        - distributional hypothesis
+            - words that occur in similar context have similar meaning (e.g. cat & dogs)
+        - distributional representation
+            - like the TF-IDF, etc
+        - distributed representation: dense and low dimensional
+        - embedding: mapping between vector space coming from distributinal representation to vector space coming from distributed representation
+        - vector semantics:
+    - word embeddings:
+        - pre trained: word2vec (google), etc
+        - train own embeddings
+            - CBOW: predict the center word given context of the surrounding words
+            - SkipGram: predict the context words from the center word
+    - going beyond words:
+        - sum or average
+        - Doc2Vec: 
+    - issue remains: OOV
+- universal language representation
+    - RNN/Transformers -> transfer learning
+    - Visualization: [t-SNE](https://towardsdatascience.com/t-sne-clearly-explained-d84c537f53a)
+- handcrafted features
+    - domain specific knowledge results in specific solution
+
 ### modeling
 
 - start with simple heuristics
@@ -121,4 +181,95 @@ deeplearning approach: (simpler to maintain, but how is the result achieved)
 
 ### monitoring and model updating
 
-- 
+
+## example: text classification
+
+### using embeddings:
+
+- option 1: use a positive and negative word dictionary -> count the positive and negative words
+- option 2: use cloud api(s)
+- option 3: BoW representation
+    - step1: split data into train and test data
+    - step2: convert text into feature vectors -> BoW 
+    - step3: train and evaluate the classifier
+        - naive bayes classifier
+        - logistic regression
+        - support vector machine: SVM
+- option 4: word embedding:
+    using word2vec:
+        - step2: loading and pre-processing: find word in the embedding and if found avg all words per sentence
+            -> resulting vector is the feature vector representing the entire text
+        - step3: see before train and evaluate the classifier
+        - Issue: bulky model
+    subword embedding and fasttext:
+        - step2: we can use subwords to deal with OOV issue
+        - issue: bulky model
+    document embedding:
+        - tweets are not regular text -> they are short, they have smileys and hashtags
+- option 5: deep learning
+    - step1: tokenize the txt and convert them into word index vectors
+    - 
+
+LIME: used to validate the classifier
+
+What is we have no data?
+- weak supervision
+- crowd sourcing
+
+## example Information Extraction
+
+IE Applications:
+- tagging/labeling news
+- chatbots
+- social media
+- extracting data from forms and receipts
+
+IE tasks -> extract knowledge from text
+- keyword and keyphrase extraction -> KPE
+- named entity recognition -> NER
+- named entity disambiguation and linking
+- relation extraction -> organization
+- event extraction
+- template filling (news extraction)
+
+This is a domain specific approach leveraging rule based and ML/DL approaches
+
+        | text
++-------+-------+
+| sentense      |
+| segmentation  |
++-------+-------+
+        |
++-------+-------+
+| word          |
+| tokenization  |
++-------+-------+
+        |
++-------+-------+     +-------+-------+ 
+| port of speech+-----+    syntatic   |
+| tagging       |     |     parsing   |
++-------+-------+     +-------+-------+
+   Named Entity               | entity disambiguation
+   Recognition        +-------+-------+
+                      | coreference   |
+                      | resolution    |
+                      +---------------+
+                            relation extraction
+                            event extraction
+
+Keyphrase Extraction
+- goal: extract important words and phrases that capture the gist of the text
+- the most popular method is unsupervised learning where words/phrases are placed as nodes in a weighted graph -. look at the most connected nodes
+
+Named entity recognition
+- goal: identity entities in a doc
+
+## SRL: semantic role labeling
+
+example: Marvin walked in the park, Marvin is the agent
+
+predicate -> main verb (describe something about the subject) => V (walked)
+noun -> zelfstandig naamwoord (argument of the predicate) => ARGO (Marvin)
+adjactive -> modifier => ARGM LOC (in the park)
+
+
