@@ -1,0 +1,1 @@
+[qualtization options](https://towardsdatascience.com/gptq-or-bitsandbytes-which-quantization-method-to-use-for-llms-examples-with-llama-2-f79bc03046dc)
