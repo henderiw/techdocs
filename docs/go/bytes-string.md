@@ -1,0 +1,1 @@
+[byte vs string](https://syslog.ravelin.com/byte-vs-string-in-go-d645b67ca7ff)
