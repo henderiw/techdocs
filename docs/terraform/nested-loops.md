@@ -1,0 +1,1 @@
+[nested loops medium](https://medium.com/geekculture/the-pain-of-a-terraform-nested-for-loop-4a9c09f64290)
