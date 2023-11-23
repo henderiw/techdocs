@@ -49,6 +49,12 @@ prepackaged steps for GHA
 
 [actions marketplace](https://github.com/marketplace?category=&query=&type=actions&verification=)
 
+
+3 types of custom actions:
+- javascript:  supported on all OS
+- composite: supported on all OS -> allows to run native go with caveats
+- docker: only supported on linux
+
 ## runners
 
 a vm where jobs defined in a workfloe are run

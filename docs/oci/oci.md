@@ -35,7 +35,7 @@ AnnotationDescription       = "org.opencontainers.image.description"
 AnnotationBaseImageDigest   = "org.opencontainers.image.base.digest"
 AnnotationBaseImageName     = "org.opencontainers.image.base.name"
 
-index:
+[index](https://github.com/opencontainers/image-spec/blob/main/specs-go/v1/index.go):
 
 ``` golang
 type Index struct {
@@ -48,7 +48,7 @@ type Index struct {
 }  
 ```
 
-manifest:
+[manifest](https://github.com/opencontainers/image-spec/blob/main/specs-go/v1/manifest.go):
 
 ``` golang
 type Manifest struct {
@@ -62,7 +62,7 @@ type Manifest struct {
 }  
 ```
 
-descriptor:
+[descriptor](https://github.com/opencontainers/image-spec/blob/main/specs-go/v1/descriptor.go):
 
 ```golang
 type Descriptor struct {
@@ -124,7 +124,7 @@ type History struct {
 }
 ```
 
-layout
+[layout](https://github.com/opencontainers/image-spec/blob/main/specs-go/v1/layout.go)
 
 ```golang
 type Layout struct {
