@@ -43,3 +43,5 @@ Maria Baldi
 Documents
 - Sender driven (MDFT/AMD)/Receiver driven(BCOM)
 - V0.5 & V0.7
+- libfabric does not define a wire format
+- INC
