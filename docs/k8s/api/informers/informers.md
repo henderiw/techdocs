@@ -1,4 +1,6 @@
-#
+# informers
+
+[informer design picture](https://github.com/kubernetes/sample-controller/blob/master/docs/images/client-go-controller-interaction.jpeg?ref=aly.arriqaaq.com)
 
 [informers blog 1](https://aly.arriqaaq.com/kubernetes-informers/)
 [informers blog 2](https://medium.com/codex/explore-client-go-informer-patterns-4415bb5f1fbd)

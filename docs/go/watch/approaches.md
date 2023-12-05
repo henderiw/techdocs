@@ -11,6 +11,7 @@
 1. 1:1 mode
 
 Approach is good when you are a server with memory storage
+single sender with singler receiver
 
 e.g. kubernetes watch is like this
 https://github.com/henderiw-k8s-lcnc/discovery/blob/18da59164f7286ae97c49d8ae71509a20c5103d5/registrator/k8s.go#L210
