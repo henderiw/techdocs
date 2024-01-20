@@ -19,5 +19,7 @@ client-go calls access the cache maintained by the indexer
 
 key value cache -> geneous piece of code
 
+=> see details in the go code
+
 ## How to use the informer
 
