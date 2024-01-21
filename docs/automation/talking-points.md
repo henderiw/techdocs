@@ -65,7 +65,7 @@ Missing:
     - Operational model is different
     - My journey
     - Aspects relevant for automation
-- Automation aspects:
+- Automation aspects: (patterns)
     - automation is a product: Buy, Build or Extend
         - Lifecycle is critical
         - How to make the effort to maintain and update small
@@ -74,6 +74,8 @@ Missing:
     - Consumable by everyone: small, extendable, etc
     - No fear, No compromise -> TRUST
     - Declarative/Intent: not just config but also does it work and ideally a UI
+    - Data Modeling
+    - Data driven
     - Collaboration, change control: Devops/
     - Divide and concur: do 1 thing and 1 thing well
     - Avoid blast radius
