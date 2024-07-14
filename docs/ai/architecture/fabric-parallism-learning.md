@@ -1,0 +1,1 @@
+https://www.linkedin.com/pulse/gpu-fabrics-genai-workloads-sharada-yeluri-j8ghc/

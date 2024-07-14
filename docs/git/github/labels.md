@@ -32,18 +32,18 @@ gh api \
   /repos/$OWNER/$REPO/milestones/7
 
 
-repos="schema-server data-server cache docs sdctl integration-tests"
-for repo in $repos
+repos=("schema-server" "data-server" "cache" "docs" "sdctl" "integration-tests" "config-server" "sdc-protos" "yang-parser")
+for repo in "${repos[@]}"
 do
   echo $repo
   gh api \
       --method POST \
       -H "Accept: application/vnd.github+json" \
       -H "X-GitHub-Api-Version: 2022-11-28" \
-      /repos/iptecharch/$repo/milestones \
-      -f title='MS5' \
+      /repos/sdcio/$repo/milestones \
+      -f title='MS10' \
       -f state='open' \
-      -f due_on='2024-02-11T08:00:00Z'
+      -f due_on='2024-03-17T08:00:00Z'
 done
 
 repos=("schema-server" "data-server" "cache" "docs" "sdctl" "integration-tests" "config-server" "sdc-protos" "yang-parser")
@@ -55,7 +55,21 @@ do
       -H "Accept: application/vnd.github+json" \
       -H "X-GitHub-Api-Version: 2022-11-28" \
       /repos/sdcio/$repo/milestones \
-      -f title='MS5' \
+      -f title='MS12' \
       -f state='open' \
-      -f due_on='2024-02-25T08:00:00Z'
+      -f due_on='2024-03-24T08:00:00Z'
+done
+
+repos=("schema-server" "data-server" "cache" "docs" "sdctl" "integration-tests" "config-server" "sdc-protos" "yang-parser")
+for repo in "${repos[@]}"
+do
+  echo $repo
+  gh api \
+      --method POST \
+      -H "Accept: application/vnd.github+json" \
+      -H "X-GitHub-Api-Version: 2022-11-28" \
+      /repos/sdcio/$repo/milestones \
+      -f title='MS18' \
+      -f state='open' \
+      -f due_on='2024-05-05T08:00:00Z'
 done

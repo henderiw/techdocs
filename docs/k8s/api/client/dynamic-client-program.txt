@@ -1,0 +1,95 @@
+package main
+
+import (
+	"context"
+	"fmt"
+	"path/filepath"
+	"regexp"
+	"strings"
+	"time"
+
+	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
+	diskcached "k8s.io/client-go/discovery/cached/disk"
+	"k8s.io/client-go/dynamic"
+	"k8s.io/client-go/restmapper"
+	"k8s.io/client-go/tools/clientcmd"
+	"k8s.io/client-go/util/homedir"
+	"sigs.k8s.io/yaml"
+)
+
+var doc = `
+apiVersion: ipam.resource.nephio.org/v1alpha1
+kind: IPClaim
+metadata:
+  name: ipclaim.node-x.ep-a
+  namespace: test-namespace
+spec:
+  kind: network
+  networkInstance:
+    name: vpc1
+    namespace: default
+  selector:
+    matchLabels:
+      nephio.org/purpose: test
+  labels:
+    nephio.org/node: x
+    nephio.org/endpoint: a
+`
+
+func main() {
+
+	config, err := clientcmd.BuildConfigFromFlags("", "/Users/henderiw/.kube/config")
+	if err != nil {
+		panic(err.Error())
+	}
+
+	dc, err := dynamic.NewForConfig(config)
+	if err != nil {
+		panic(err.Error())
+	}
+
+	//discoveryClient := discovery.NewDiscoveryClientForConfigOrDie(config)
+	cacheDir := filepath.Join(homedir.HomeDir(), ".kube", "cache")
+	httpCacheDir := filepath.Join(cacheDir, "http")
+	discoveryCacheDir := computeDiscoverCacheDir(filepath.Join(cacheDir, "discovery"), config.Host)
+	discoveryClient, err := diskcached.NewCachedDiscoveryClientForConfig(config, discoveryCacheDir, httpCacheDir, time.Duration(6*time.Hour))
+	if err != nil {
+		panic(err.Error())
+	}
+
+	// Create a RESTMapper from the fetched resources
+	mapper1 := restmapper.NewDeferredDiscoveryRESTMapper(discoveryClient)
+	mapper := restmapper.NewShortcutExpander(mapper1, discoveryClient)
+
+	obj := unstructured.Unstructured{}
+	if err := yaml.Unmarshal([]byte(doc), &obj); err != nil {
+		panic(err.Error())
+	}
+
+	fmt.Println("group", obj.GroupVersionKind().GroupKind().Group)
+	fmt.Println("kind", obj.GroupVersionKind().GroupKind().Kind)
+	fmt.Println("Version", obj.GroupVersionKind().Version)
+
+	m, err := mapper.RESTMapping(obj.GroupVersionKind().GroupKind(), obj.GroupVersionKind().Version)
+	if err != nil {
+		fmt.Println("mapping error", err)
+	}
+	newObj, err := dc.Resource(m.Resource).Namespace(obj.GetNamespace()).Get(context.Background(), obj.GetName(), v1.GetOptions{})
+	if err != nil {
+		panic(err.Error())
+	}
+	fmt.Println(newObj)
+}
+
+// overlyCautiousIllegalFileCharacters matches characters that *might* not be supported.  Windows is really restrictive, so this is really restrictive
+var overlyCautiousIllegalFileCharacters = regexp.MustCompile(`[^(\w/.)]`)
+
+// computeDiscoverCacheDir takes the parentDir and the host and comes up with a "usually non-colliding" name.
+func computeDiscoverCacheDir(parentDir, host string) string {
+	// strip the optional scheme from host if its there:
+	schemelessHost := strings.Replace(strings.Replace(host, "https://", "", 1), "http://", "", 1)
+	// now do a simple collapse of non-AZ09 characters.  Collisions are possible but unlikely.  Even if we do collide the problem is short lived
+	safeHost := overlyCautiousIllegalFileCharacters.ReplaceAllString(schemelessHost, "_")
+	return filepath.Join(parentDir, safeHost)
+}

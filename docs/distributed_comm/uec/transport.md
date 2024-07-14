@@ -62,6 +62,7 @@ RUDI:
 - pkt is delivered at least once to the SES
 - goal multiple RMA Writes/Reads and than the barrier
 - If Congestion management is used can be done in the same traffic class, otherwise a different traffic class is needed
+- no replay protection -> need to be added in the application
 
 UUD:
 - if the same traffic class Congestion management must be enabled
@@ -69,3 +70,28 @@ UUD:
 ## Congestion Mnagement
 
 [simulation code](https://github.com/mhandley/uec-transport-simulation-code)
+
+## trimming:
+
+helps congestion management
+2 indications for congestions
+1. ECN
+2. trimmed packets -> 100/128 bytes -> returned back to the source
+
+Send with a new DSCP + update total length
+
+## ReadRequest improvement
+
+- Now: (High Efficiency Read is not good)
+    - 16K read with a 4K MTU would need to send 4 ReadRequest/ReadResp
+    - Handled by the semantic layer ()
+- Options for improvement:
+    - implement Read as Write by Target (High efficiency Write is available)
+        - ReadReq does not contain the info needed to form a WriteRequest at Target -> missing info for the initiator (PidonFEP, Index, Match Bits)
+        - New Opcode needed
+    - One Read Request per MTU
+        - Do not require support for REMOTE_READ completion counters -> no need for state tracking if this is not required
+
+discussion:
+- now: read is initiator driven
+- REMOTE_READ completion counters (target) -> completion queue/counters in libfabric

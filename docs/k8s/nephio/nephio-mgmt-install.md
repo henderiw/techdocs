@@ -190,7 +190,7 @@ EOF
 
 add the repos to the nephio-test-catalog-01
 
-```
+```yaml
 cat <<EOF | kubectl apply -f -
 apiVersion: baseconfig.nephio.io/v1alpha1
 kind: RepoConfig

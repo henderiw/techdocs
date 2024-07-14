@@ -4,7 +4,7 @@
 - async functions return a promise
 - async return in 1 of 3 ways:
   - if nothing is returned from the fn, it will return a promise with a resolved value of undefined
-  - if there a non-promise value returnws from the fn, it will return a promise resolved to that value
+  - if there a non-promise value returns from the fn, it will return a promise resolved to that value
   - if a promise is returned from the fn, it will simply treturn that promise
 
 - await: 

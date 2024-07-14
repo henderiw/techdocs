@@ -45,3 +45,18 @@ Documents
 - V0.5 & V0.7
 - libfabric does not define a wire format
 - INC
+
+
+Deferred Send:
+- no read although read is in all profiles
+- if you have a limited send window in rendez vous
+- No eager in DSEND
+- For both rende
+
+DSEND:
+- limit DSEND to RUD; in ROD there is a need to support buffers in order
+- Target support for DSEND is implementation specific
+  - Limited number of simultenously outstanding DSEND operations
+  - DSEND falls back to initiator timer based retransmit (in HW or provider)
+- Enable use of direct lookup of HW offload
+  - 
