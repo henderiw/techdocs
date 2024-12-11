@@ -17,6 +17,8 @@
 - {Name: Bram van de Burgt, org: Team Blue, Country: NL, Role: }
 - {Name: Mark Villadsen, org: Team Blue, Country: DenMark, Role: }
 - {Name: Rene Goris, org: DC Spine, Country: Netherland, Role: automation}
+
+- {Name: Prakhar Sharma, org: ..., Country: USA, Role: Automation, Comment: met in NANAG92 New York Enterprise -> using M4}
 ```
 
 ## Service Providers:
@@ -27,6 +29,7 @@
 - {Name: Marc Alexandre Choquette, Org: Bell Canada, Country: Canada, Role: network architecture}
 - {Name: Dan Voyer, Org: Bell Canada, Country: Canada, Role: network architecture}
 - {Name: Dan Bernier, Org: Bell Canada, Country: Canada, Role: network architecture}
+- {Name: Joseph Nicholson, Org: NTT, Country: USA, Role: network ops, Tel: +12142447863, "Mail": joseph@ntt.net}
 ```
 
 ## Integration:

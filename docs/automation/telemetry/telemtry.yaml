@@ -1,0 +1,16 @@
+# telemetry
+
+# STREAM, ONE, POLL
+mode: STREAM
+# SAMPLE, ON_CHANGE, TARGET_DEFINED (The server determines how updates are generated and sent.)
+stream-Mode: SAMPLE
+# sample interval
+interval: 15s
+# JSON_IETF, ASCII, PROTO
+encoding: PROTO
+
+qos:
+
+
+# not used -> client sees only the delta and has knowledge of the initial value
+update-only: true

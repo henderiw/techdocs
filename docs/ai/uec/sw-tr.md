@@ -60,3 +60,18 @@ DSEND:
   - DSEND falls back to initiator timer based retransmit (in HW or provider)
 - Enable use of direct lookup of HW offload
   - 
+
+
+2024 OCt 14:
+- current CMS spec -> NSCCC mandatory, RCCC is optional
+- aggregate rate control (ARC) in CMS spec -> optional
+  - RCCC is optional, ARC is optional on top of RCCC
+- 
+
+
+
+## Congestion Control
+
+NSCCC: needs quick adapt
+- timeoutes or inferred packets should not trigger quick adapt
+- NACK are quick

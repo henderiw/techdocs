@@ -1,0 +1,1 @@
+[medium zsh git prompt](https://medium.com/pareture/simplest-zsh-prompt-configs-for-git-branch-name-3d01602a6f33)

@@ -1,0 +1,1 @@
+[gnmi map](https://gitlab.com/rdodin/pics/-/wikis/uploads/d275425d2b66601be213c6722dadd4d6/gnmi_0.7.0_map.pdf)

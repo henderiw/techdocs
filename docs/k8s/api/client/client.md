@@ -5,7 +5,7 @@
 
 [dynamic client blog2](https://ymmt2005.hatenablog.com/entry/2020/04/14/An_example_of_using_dynamic_client_of_k8s.io/client-go)
 
-```
+```go
 func newClient() (dynamic.Interface, error) {
 	config, err := rest.InClusterConfig()
 	if err != nil {

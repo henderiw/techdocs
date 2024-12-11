@@ -204,3 +204,28 @@ Kubernetes outline:
         - Huge knowledge base
 - To Help in this journey Nokia want to help train and educate people to leverage Kubernetes as the automation platform for network automation
     -> launch Kubenet
+
+
+# autocon2
+
+The goal of this talk is to share experience in building network automation using kubernetes. In this talk i will share my experiences building kubenet:
+- How it came about, the architecture it uses for orchestration, automation and SOT.
+- Why an api first system is benefitial for network automation and how it is used/leveraged
+    - How we use abstract, low level and vendor agnostic and vendor dependent api(s)
+    - How we leverage the desired state as a SOT
+- The benefits of an event driven framework for network automation
+- How drift detection 
+- How we use choreography to deal with dependencies
+- How we deal with change management in a scalable way.
+
+
+In this talk will share practical experiences and lessons learned from developing Kubenet and how i ended up using a choreography approach for network automation. The following topics will be included in this talk:
+•	Architecture and Orchestration: Discover the architecture used for orchestration, automation, and Source of Truth (SOT) in Kubenet.
+•	API-First System: Understand the benefits of an API-first approach, using abstract, low-level, vendor-agnostic, and vendor-dependent APIs and how you can easily extend your own API(s)
+•	Event-driven Framework: Explore the advantages of an event-driven framework for dynamic and responsive network management.
+•	Drift Detection and Remediation: See how Kubenet identifies and corrects deviations from the desired network state.
+•	Choreography for Dependencies: Understand how choreography is used to manage dependencies effectively.
+•	Reconciliation Loop: Learn about Kubernetes’ reconciliation mechanism to ensure continuous alignment of network configuration
+•	Scalable Change Management: Discover strategies for scalable and efficient change management.
+
+
