@@ -1,0 +1,75 @@
+- interpolation
+- keywords:
+    - fn
+    - match
+    - loop
+    - break
+    - continue
+    - while
+    - struct
+    - enum
+    - let
+    - pub
+    - use
+    - self
+    - super
+    - as: alias
+    - trait
+- statement
+    - match
+    - let
+- types
+    - scalar: single type
+        - integer,
+        - bool
+        - string
+    - collection type
+        - array
+        - tuple
+        - string
+    - range
+    - tuple
+    - unit: empty tuple
+    - slice: reference to portion (string, array)
+    - struct
+        - fields
+    - enum
+        - variant
+- operator: is a symbol that applies an operation to a value
+    - dereference: *
+    - addition: +
+    - == : equality operator
+    - assignment: =
+    - Turbofish Operation ::<i32>
+    - scope resolution operator ::
+    - glob
+    - try
+- method: fn on a type
+- index position -> index in the array (0, ...)
+- trait:
+    - like contract: a type must support a method
+    - like an interface in go
+- format specifier
+    - :4 for float
+- macro: ends with !
+    - replaced by the compiler as a fn call
+    - println!
+    - format!
+    - 
+- iterate
+- memory managment
+    - Ownership
+    - Borrow
+    - reference
+    - LIFETIME
+- enum
+    - variant
+    - Option enum -> rust implements the copy trait (no ownership transfer)
+        Some/None
+    - Result enum
+        Ok/Err
+- match
+    - arm
+- prelude: things that rust includes by default
+- trait:
+    

@@ -31,3 +31,7 @@ rename to wadm.yaml
 wash dev --wadm-manifest wadm.yaml
 
 wash app deploy wadm.yaml
+
+## couchbase
+
+https://github.com/vados-cosmonic

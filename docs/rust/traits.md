@@ -10,7 +10,7 @@
 - use impl Trait as a function argument to pass data via trait
 - trait should have caapital letter to distinguish from function
 
-```
+```rust
 trait Noise {
     fn make_noise(&self);
 }
